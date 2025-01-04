@@ -1,0 +1,94 @@
+% Define parameters
+pop_size = 100;
+dim = 10;   % Example dimension
+lb = -100;  % Lower bound
+ub = 100;   % Upper bound
+max_iter = 100;
+algorithms = {'FOX', 'TSA', 'PSO', 'GWO', 'HybridFOX_TSA'};  % Define the algorithms
+cec_functions = {@cec01, @cec02, @cec03, @cec04, @cec05, @cec06, @cec07, @cec08, @cec09, @cec10};  % CEC functions
+
+% Prepare results storage
+results = zeros(length(cec_functions), length(algorithms));
+colors = {'r', 'g', 'b', 'm', 'c'};  % Colors for each algorithm in the graph
+
+% Excel file and sheet name
+excel_file = 'CEC2019_Results.xlsx';
+sheet_name = 'Results';
+
+% Iterate through each CEC function
+for cec_index = 1:length(cec_functions)
+    fhd = cec_functions{cec_index};  % Get the current CEC function
+    
+    fprintf('Evaluating CEC function %d...\n', cec_index);
+    
+    figure; % Create a new figure for each CEC function
+    hold on;  % Hold the plot so that all algorithms are plotted on the same graph
+    
+    % Iterate through each algorithm
+    for alg_index = 1:length(algorithms)
+        algorithm = algorithms{alg_index};
+        fprintf('Running %s on CEC function %d...\n', algorithm, cec_index);
+        
+        % Initialize population for the current algorithm
+        ub_vec = repmat(ub, 1, dim);  % Repeat upper bound to match dimensions
+        lb_vec = repmat(lb, 1, dim);  % Repeat lower bound to match dimensions
+        X = initialization(pop_size, dim, ub_vec, lb_vec);  % Initialize population within bounds
+
+        % Run the selected algorithm and get best solution and history
+        switch algorithm
+            case 'FOX'
+                [best_solution, history] = FOX_func(pop_size, max_iter, lb_vec, ub_vec, dim, fhd);  % No transpose in fhd call
+            case 'TSA'
+                [best_solution, history] = TSA_func(fhd, X, pop_size, max_iter, lb_vec, ub_vec, dim);
+            case 'PSO'
+                [best_solution, history] = PSO_func(fhd, X, pop_size, max_iter, lb_vec, ub_vec, dim);
+            case 'GWO'
+                [best_solution, history] = GWO_func(fhd, X, pop_size, max_iter, lb_vec, ub_vec, dim);
+            case 'HybridFOX_TSA'
+                [best_solution, history] = Hybrid_FOX_TSA_func(pop_size, max_iter, lb_vec, ub_vec, dim, fhd);
+            otherwise
+                error('Unknown algorithm: %s', algorithm);
+        end
+        
+        % Store the minimum fitness achieved by the algorithm
+        results(cec_index, alg_index) = min(history);
+        
+        % Plot convergence curve for each algorithm
+        iter_vector = 1:length(history);  % Adjust the iteration vector to match history length
+        plot(iter_vector, history, 'LineWidth', 2, 'Color', colors{alg_index}, 'DisplayName', algorithm);
+    end
+    
+    % Add titles, labels, and legends to the graph
+    title(sprintf('Comparison on CEC Function %d', cec_index));
+    xlabel('Iteration');
+    ylabel('Best Fitness');
+    legend show;  % Show legend to differentiate the algorithms
+    grid on;
+    hold off;
+end
+
+% Save the results to an Excel sheet
+T = array2table(results, 'VariableNames', algorithms, 'RowNames', ...
+    {'CEC01', 'CEC02', 'CEC03', 'CEC04', 'CEC05', 'CEC06', 'CEC07', 'CEC08', 'CEC09', 'CEC10'});
+writetable(T, excel_file, 'Sheet', sheet_name, 'WriteRowNames', true);
+
+fprintf('Results saved to %s (Sheet: %s)\n', excel_file, sheet_name);
+
+% Helper function to initialize population within bounds
+function [X] = initialization(pop_size, dim, ub, lb)
+    % Ensure that ub and lb are properly handled
+    if isscalar(ub)
+        ub = repmat(ub, 1, dim);
+    end
+    if isscalar(lb)
+        lb = repmat(lb, 1, dim);
+    end
+
+    % Make sure ub > lb
+    if any(ub <= lb)
+        error('Upper bounds (ub) must be greater than lower bounds (lb).');
+    end
+
+    % Initialize positions of the population within bounds
+    X = rand(pop_size, dim) .* (ub - lb) + lb;
+end
