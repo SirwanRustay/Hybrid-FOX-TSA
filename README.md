@@ -60,7 +60,7 @@ Citation
 
 If you use this implementation in your research, please cite the following paper:
 
-Sirwan A. Aula, Tarik A. Rashid,FOX-TSA: Navigating Complex Search Spaces and Superior Performance in Benchmark and Real-World Optimization Problems,Ain Shams Engineering Journal,Volume 16, Issue 1, 2025, 103185,ISSN 2090-4479,https://doi.org/10.1016/j.asej.2024.103185.Read the article on ScienceDirect
+Sirwan A. Aula, Tarik A. Rashid,FOX-TSA: Navigating Complex Search Spaces and Superior Performance in Benchmark and Real-World Optimization Problems,Ain Shams Engineering Journal,Volume 16, Issue 1, 2025, 103185,ISSN 2090-4479,https://doi.org/10.1016/j.asej.2024.103185  Read the article on ScienceDirect
 
 Abstract
 
