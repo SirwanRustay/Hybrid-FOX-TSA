@@ -34,7 +34,7 @@ Usage
 
 Clone the repository:
 
-git clone https://github.com/your-username/Hybrid_FOX_TSA.git
+git clone https://github.com/SirwanRustay/Hybrid-FOX-TSA
 
 Navigate to the directory and open MATLAB.
 
