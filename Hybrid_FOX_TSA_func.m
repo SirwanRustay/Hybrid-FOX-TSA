@@ -1,3 +1,13 @@
+Cite as :
+Sirwan A. Aula, Tarik A. Rashid. (2024). FOX-TSA hybrid algorithm: Advancing for superior predictive accuracy in tourism-driven multi-layer perceptron models, Systems and Soft Computing, Volume 6, https://doi.org/10.1016/j.sasc.2024.200178 
+
+Sirwan A. Aula, Tarik A. Rashid. (2024). Foxtsage vs. Adam: Revolution or Evolution in Optimization?.Arxiv 
+https://doi.org/10.48550/arXiv.2412.17855
+
+Sirwan A. Aula, Tarik A. Rashid.(2025). FOX-TSA: Navigating Complex Search Spaces and Superior Performance in Benchmark and Real-World Optimization Problems, Ain Shams Engineering Journal, Vol 16, Issue 1,https://doi.org/10.1016/j.asej.2024.103185
+
+
+
 function [Best_score, Best_pos, convergence_curve, all_scores] = Hybrid_FOX_TSA_func(pop_size, max_iter, lb, ub, dim, fobj)
     Best_pos = zeros(1, dim);
     Best_score = inf; % Change this to -inf for maximization problems
