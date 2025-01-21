@@ -58,9 +58,15 @@ Computational efficiency
 
 Citation
 
-If you use this implementation in your research, please cite the following paper:
+If you use this implementation in your research, please cite the following papers:
+Cite as :
+Sirwan A. Aula, Tarik A. Rashid.(2025). FOX-TSA: Navigating Complex Search Spaces and Superior Performance in Benchmark and Real-World Optimization Problems, Ain Shams Engineering Journal, Vol 16, Issue 1,https://doi.org/10.1016/j.asej.2024.103185
 
-Sirwan A. Aula, Tarik A. Rashid,FOX-TSA: Navigating Complex Search Spaces and Superior Performance in Benchmark and Real-World Optimization Problems,Ain Shams Engineering Journal,Volume 16, Issue 1, 2025, 103185,ISSN 2090-4479,https://doi.org/10.1016/j.asej.2024.103185  Read the article on ScienceDirect
+Sirwan A. Aula, Tarik A. Rashid. (2024). Foxtsage vs. Adam: Revolution or Evolution in Optimization?.Arxiv 
+https://doi.org/10.48550/arXiv.2412.17855
+
+Sirwan A. Aula, Tarik A. Rashid. (2024). FOX-TSA hybrid algorithm: Advancing for superior predictive accuracy in tourism-driven multi-layer perceptron models, Systems and Soft Computing, Volume 6, https://doi.org/10.1016/j.sasc.2024.200178 
+
 
 Abstract
 
